@@ -21,6 +21,30 @@ class Channel:
         self.video_count = [x['statistics']['videoCount'] for x in self.channel_data['items']][0]
         self.view_count = [x['statistics']['viewCount'] for x in self.channel_data['items']][0]
 
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        return int(self.subscriberCount) + int(other.subscriberCount)
+
+    def __sub__(self, other):
+        return int(self.subscriberCount) - int(other.subscriberCount)
+
+    def __gt__(self, other):
+        return int(self.subscriberCount) > int(other.subscriberCount)
+
+    def __ge__(self, other):
+        return int(self.subscriberCount) >= int(other.subscriberCount)
+
+    def __lt__(self, other):
+        return int(self.subscriberCount) < int(other.subscriberCount)
+
+    def __le__(self, other):
+        return int(self.subscriberCount) <= int(other.subscriberCount)
+
+    def __eq__(self, other):
+        return int(self.subscriberCount) == int(other.subscriberCount)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel_data, indent=2, ensure_ascii=False))
