@@ -1,4 +1,3 @@
-from src.channel import Channel
 from googleapiclient.discovery import build
 import os
 
